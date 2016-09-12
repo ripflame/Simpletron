@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.SimpletronController;
 import Models.MemoryTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +12,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Gilberto León
  */
 public class MainView extends javax.swing.JFrame {
+    
+    private SimpletronController simpletronController;
 
     /**
      * Creates new form MainView
@@ -22,6 +25,8 @@ public class MainView extends javax.swing.JFrame {
         this.Table_Memory.getTableHeader().setReorderingAllowed(false);
         this.Table_Memory.setCellSelectionEnabled(false);
         this.Table_Memory.setFocusable(false);
+        
+        this.simpletronController = new SimpletronController();
     }
 
     /**
@@ -261,6 +266,8 @@ public class MainView extends javax.swing.JFrame {
             codes[i] = Integer.parseInt(codesString[i]);
         }
         ((MemoryTableModel)this.Table_Memory.getModel()).setMemoryCells(codes);
+        
+        this.TextArea_Assembly.setText(this.simpletronController.parseLMS(codes, codesString.length));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
